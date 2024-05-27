@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "title": "Albert Heijn",
+      "description": "A popular supermarket chain in the Netherlands.",
+      "latitude": 51.9225,
+      "longitude": 4.47917
+    },
+    {
+      "title": "Jumbo",
+      "description": "A large supermarket offering a wide range of products.",
+      "latitude": 51.9244,
+      "longitude": 4.47773
+    },
+    {
+      "title": "Lidl",
+      "description": "A discount supermarket known for its low prices.",
+      "latitude": 51.9230,
+      "longitude": 4.48002
+    },
+    {
+      "title": "Aldi",
+      "description": "A supermarket offering a variety of discounted goods.",
+      "latitude": 51.9180,
+      "longitude": 4.48152
+    },
+    {
+      "title": "Plus",
+      "description": "A supermarket chain focusing on fresh and organic products.",
+      "latitude": 51.9270,
+      "longitude": 4.48330
+    },
+    {
+      "title": "Spar",
+      "description": "A convenience store and supermarket chain.",
+      "latitude": 51.9210,
+      "longitude": 4.48940
+    },
+    {
+      "title": "Coop",
+      "description": "A supermarket known for its community-focused approach.",
+      "latitude": 51.9250,
+      "longitude": 4.47450
+    },
+    {
+      "title": "Dirk",
+      "description": "A discount supermarket with a wide range of products.",
+      "latitude": 51.9200,
+      "longitude": 4.47340
+    },
+    {
+      "title": "Vomar",
+      "description": "A supermarket chain offering quality products at low prices.",
+      "latitude": 51.9260,
+      "longitude": 4.47890
+    },
+    {
+      "title": "Hoogvliet",
+      "description": "A Dutch supermarket chain with a focus on quality and service.",
+      "latitude": 51.9190,
+      "longitude": 4.47520
+    },
+    {
+      "title": "Nettorama",
+      "description": "A discount supermarket known for its low prices.",
+      "latitude": 51.9280,
+      "longitude": 4.47050
+    },
+    {
+      "title": "DekaMarkt",
+      "description": "A supermarket offering a wide range of fresh products.",
+      "latitude": 51.9225,
+      "longitude": 4.47180
+    },
+    {
+      "title": "Marqt",
+      "description": "A supermarket focusing on sustainable and organic products.",
+      "latitude": 51.9245,
+      "longitude": 4.47820
+    },
+    {
+      "title": "MCD Supermarkt",
+      "description": "A supermarket chain with a variety of grocery items.",
+      "latitude": 51.9215,
+      "longitude": 4.47470
+    },
+    {
+      "title": "Ekoplaza",
+      "description": "A supermarket chain focusing on organic products.",
+      "latitude": 51.9235,
+      "longitude": 4.47650
+    },
+    {
+      "title": "Emte",
+      "description": "A supermarket chain known for its fresh produce.",
+      "latitude": 51.9185,
+      "longitude": 4.47900
+    },
+    {
+      "title": "Poiesz",
+      "description": "A regional supermarket chain offering a variety of products.",
+      "latitude": 51.9175,
+      "longitude": 4.48250
+    },
+    {
+      "title": "Boons Markt",
+      "description": "A supermarket chain focusing on customer satisfaction.",
+      "latitude": 51.9265,
+      "longitude": 4.47710
+    },
+    {
+      "title": "Jan Linders",
+      "description": "A supermarket chain with a focus on fresh and local products.",
+      "latitude": 51.9255,
+      "longitude": 4.48030
+    },
+    {
+      "title": "Deen Supermarkten",
+      "description": "A supermarket chain offering a wide range of groceries.",
+      "latitude": 51.9205,
+      "longitude": 4.47680
+    }
+  ]
+}

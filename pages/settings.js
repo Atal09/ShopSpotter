@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext} from "react";
 import {Button, StyleSheet, Text, View} from 'react-native';
 
 function Settings({navigation}){
-
+//darkmode
 
 
     return (

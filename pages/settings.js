@@ -1,18 +1,31 @@
-import React, { useState, useEffect, useContext} from "react";
-import {Button, StyleSheet, Text, View} from 'react-native';
+import React, { useContext } from 'react';
+import { View, Switch, StyleSheet } from 'react-native';
+import { ThemeContext } from '../components/themecontext';
 
-function Settings({navigation}){
-//darkmode
+function Settings() {
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
+    const containerStyle = {
+        ...styles.container,
+        backgroundColor: isDarkMode ? 'black' : 'white',
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                title="Go to Home"
-                onPress={() => navigation.navigate('Home')}
+        <View style={containerStyle}>
+            <Switch
+                value={isDarkMode}
+                onValueChange={toggleTheme}
             />
         </View>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
 
 export default Settings;

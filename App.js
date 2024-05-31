@@ -9,7 +9,8 @@ const Stack = createStackNavigator();
 import Navbar from "./components/navbar"
 import MapScreen from "./pages/maps";
 import Settings from "./pages/settings";
-// import { ThemeProvider } from "./pages/settings";
+import { ThemeProvider } from "./components/themecontext";
+
 
 
 function MyStack() {
@@ -24,12 +25,12 @@ function MyStack() {
 }
 export default function App() {
   return (
-      // <ThemeProvider>
+      <ThemeProvider>
       <NavigationContainer>
           <Navbar />
           <MyStack />
       </NavigationContainer>
-          // </ThemeProvider>
+      </ThemeProvider>
 
   );
 }

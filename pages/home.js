@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState, useEffect, useContext } from "react";
+import { StyleSheet, View, Button } from 'react-native';
+import { ThemeContext } from '../components/themecontext';
+import 'nativewind';
 
-function Home({navigation}){
 
+
+function Home({ navigation }) {
     const [data, setData] = useState([]);
+    const { isDarkMode } = useContext(ThemeContext);
 
-    //fetching studhosted
     useEffect(() => {
         fetch('https://stud.hosted.hr.nl/1060857/programmeren%207/items.json')
             .then(response => response.json())
@@ -14,18 +17,30 @@ function Home({navigation}){
     }, []);
 
     return (
-        <View className="flex-1 items-center justify-center bg-white">
+        <View style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]} className="flex-1 items-center justify-center">
             <Button
                 title="Go to Map"
                 onPress={() => navigation.navigate('MapScreen', { markers: data })}
             />
             <Button
-            title="Go to Settings"
-            onPress={() => navigation.navigate('Settings', { markers: data })}
+                title="Go to Settings"
+                onPress={() => navigation.navigate('Settings')}
             />
-            <Button title="Go back" onPress={() => navigation.goBack()} />
+
         </View>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    lightContainer: {
+        backgroundColor: 'white',
+    },
+    darkContainer: {
+        backgroundColor: 'black',
+    },
+});
 
 export default Home;

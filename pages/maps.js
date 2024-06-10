@@ -1,15 +1,17 @@
 // MapScreen.js
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import { ThemeContext } from '../components/themecontext';
 import * as Location from 'expo-location';
+import { AirbnbRating } from 'react-native-ratings';
 
 function MapScreen({ route }) {
     const { markers } = route.params;
     const { isDarkMode } = useContext(ThemeContext);
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    const [selectedMarker, setSelectedMarker] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -43,6 +45,7 @@ function MapScreen({ route }) {
                         }}
                         title={marker.title}
                         description={marker.description}
+                        onPress={() => setSelectedMarker(marker)}
                     />
                 ))}
                 {location && (
@@ -56,6 +59,12 @@ function MapScreen({ route }) {
                     />
                 )}
             </MapView>
+            {selectedMarker && (
+                <View style={styles.ratingContainer}>
+                    <Text>{selectedMarker.title}</Text>
+                    <AirbnbRating />
+                </View>
+            )}
         </View>
     );
 }
@@ -76,6 +85,13 @@ const styles = StyleSheet.create({
     paragraph: {
         fontSize: 18,
         textAlign: 'center',
+    },
+    ratingContainer: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        backgroundColor: 'white',
+        padding: 10,
     },
 });
 

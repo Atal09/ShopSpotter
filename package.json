@@ -19,6 +19,7 @@
     "react-native": "0.74.1",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-maps": "^1.14.0",
+    "react-native-ratings": "^8.1.0",
     "react-native-switch": "^1.5.1"
   },
   "devDependencies": {

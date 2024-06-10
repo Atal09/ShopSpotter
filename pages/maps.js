@@ -12,6 +12,7 @@ function MapScreen({ route }) {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [selectedMarker, setSelectedMarker] = useState(null);
+    const [ratings, setRatings] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -32,6 +33,13 @@ function MapScreen({ route }) {
     } else if (location) {
         text = JSON.stringify(location);
     }
+
+    const handleFinishRating = (rating, name) => {
+        setRatings(prevRatings => ({
+            ...prevRatings,
+            [name]: rating,
+        }));
+    };
 
     return (
         <View style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]}>
@@ -62,7 +70,10 @@ function MapScreen({ route }) {
             {selectedMarker && (
                 <View style={styles.ratingContainer}>
                     <Text>{selectedMarker.title}</Text>
-                    <AirbnbRating />
+                    <AirbnbRating
+                        onFinishRating={rating => handleFinishRating(rating, selectedMarker.title)}
+                        defaultRating={ratings[selectedMarker.title] || 0}
+                    />
                 </View>
             )}
         </View>

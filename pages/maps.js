@@ -1,10 +1,11 @@
 // MapScreen.js
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import MapView, { Marker, Callout } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { ThemeContext } from '../components/themecontext';
 import * as Location from 'expo-location';
 import { AirbnbRating } from 'react-native-ratings';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MapScreen({ route }) {
     const { markers } = route.params;
@@ -26,6 +27,33 @@ function MapScreen({ route }) {
             setLocation(location);
         })();
     }, []);
+
+    useEffect(() => {
+        const loadRatings = async () => {
+            try {
+                const storedRatings = await AsyncStorage.getItem('ratings');
+                if (storedRatings) {
+                    setRatings(JSON.parse(storedRatings));
+                }
+            } catch (error) {
+                console.error('Failed to load ratings from AsyncStorage', error);
+            }
+        };
+
+        loadRatings();
+    }, []);
+
+    useEffect(() => {
+        const saveRatings = async () => {
+            try {
+                await AsyncStorage.setItem('ratings', JSON.stringify(ratings));
+            } catch (error) {
+                console.error('Failed to save ratings to AsyncStorage', error);
+            }
+        };
+
+        saveRatings();
+    }, [ratings]);
 
     let text = 'Waiting..';
     if (errorMsg) {

@@ -20,7 +20,7 @@ function List({ navigation }) {
                 onPress={() => navigation.navigate('MapScreen', { markers: data })}
             />
             <Button
-                title="Go to Supermarkets"
+                title="Go to Supermarkets list"
                 onPress={() => navigation.navigate('Supermarkets', { data: data })}
             />
             <Button

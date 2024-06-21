@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, View, Button } from 'react-native';
+import {StyleSheet, View, Button, Text} from 'react-native';
 import { ThemeContext } from '../components/themecontext';
 import 'nativewind';
 
@@ -10,18 +10,13 @@ import 'nativewind';
 // import {styled} from "nativewind";
 
 function Home({ navigation }) {
-    // const [data, setData] = useState([]);
     const { isDarkMode } = useContext(ThemeContext);
 
-    // useEffect(() => {
-    //     fetch('https://stud.hosted.hr.nl/1060857/programmeren%207/items.json')
-    //         .then(response => response.json())
-    //         .then(data => setData(data))
-    //         .catch(error => console.error(error));
-    // }, []);
+
 
     return (
         <View style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]} className="flex-1 items-center justify-center">
+            <Text style={[styles.title, isDarkMode ? styles.darkTitle : styles.lightTitle]}>Welcome to Supermarket Locator</Text>
             <Button
                 title="Go to List"
                 onPress={() => navigation.navigate('List')}
@@ -30,7 +25,6 @@ function Home({ navigation }) {
                 title="Go to Settings"
                 onPress={() => navigation.navigate('Settings')}
             />
-
         </View>
     );
 }
@@ -44,6 +38,16 @@ const styles = StyleSheet.create({
     },
     darkContainer: {
         backgroundColor: 'black',
+    },
+    title: {
+        fontSize: 24,
+        marginBottom: 20,
+    },
+    lightTitle: {
+        color: 'black',
+    },
+    darkTitle: {
+        color: 'white',
     },
 });
 

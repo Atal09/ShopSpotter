@@ -1,21 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-function Supermarkets({ route }) {
+function Supermarkets({ route, navigation }) {
     const { data } = route.params;
 
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 {data && data.items && data.items.map((item, index) => (
-                    <View key={index} style={styles.supermarketContainer}>
+                    <TouchableOpacity
+                        key={index}
+                        style={styles.supermarketContainer}
+                        onPress={() => navigation.navigate('MapScreen', { markers: data, selectedMarker: item })}
+                    >
                         <Text style={styles.supermarketText}>{item.title}</Text>
-                    </View>
+                    </TouchableOpacity>
                 ))}
             </ScrollView>
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -1,5 +1,4 @@
-// MapScreen.js
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { ThemeContext } from '../components/themecontext';
@@ -8,12 +7,13 @@ import { AirbnbRating } from 'react-native-ratings';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MapScreen({ route }) {
-    const { markers } = route.params;
+    const { markers, selectedMarker: initialSelectedMarker } = route.params || {};
     const { isDarkMode } = useContext(ThemeContext);
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    const [selectedMarker, setSelectedMarker] = useState(null);
     const [ratings, setRatings] = useState({});
+    const mapViewRef = useRef(null);
+    const [selectedMarker, setSelectedMarker] = useState(initialSelectedMarker);
 
     useEffect(() => {
         (async () => {
@@ -55,12 +55,17 @@ function MapScreen({ route }) {
         saveRatings();
     }, [ratings]);
 
-    let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
-    } else if (location) {
-        text = JSON.stringify(location);
-    }
+    useEffect(() => {
+        if (selectedMarker && mapViewRef.current) {
+            const { latitude, longitude } = selectedMarker;
+            mapViewRef.current.animateToRegion({
+                latitude,
+                longitude,
+                latitudeDelta: 0.001,
+                longitudeDelta: 0.001,
+            }, 1000);
+        }
+    }, [selectedMarker]);
 
     const handleFinishRating = (rating, name) => {
         setRatings(prevRatings => ({
@@ -69,10 +74,21 @@ function MapScreen({ route }) {
         }));
     };
 
+    const initialRegion = {
+        latitude: selectedMarker?.latitude || location?.coords.latitude || 51.9225,
+        longitude: selectedMarker?.longitude || location?.coords.longitude || 4.47917,
+        latitudeDelta: selectedMarker ? 0.001 : 0.0922,
+        longitudeDelta: selectedMarker ? 0.001 : 0.0421,
+    };
+
     return (
         <View style={[styles.container, isDarkMode ? styles.darkContainer : styles.lightContainer]}>
-            <MapView style={styles.map}>
-                {markers.items.map((marker, index) => (
+            <MapView
+                ref={mapViewRef}
+                style={styles.map}
+                initialRegion={initialRegion}
+            >
+                {markers && markers.items.map((marker, index) => (
                     <Marker
                         key={index}
                         coordinate={{
@@ -120,10 +136,6 @@ const styles = StyleSheet.create({
     },
     darkContainer: {
         backgroundColor: 'black',
-    },
-    paragraph: {
-        fontSize: 18,
-        textAlign: 'center',
     },
     ratingContainer: {
         position: 'absolute',

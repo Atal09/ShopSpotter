@@ -97,6 +97,7 @@ function MapScreen({ route }) {
     const mapViewRef = useRef(null);
     const [selectedMarker, setSelectedMarker] = useState(initialSelectedMarker);
 
+    // Request location permissions and get current location
     useEffect(() => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -110,6 +111,7 @@ function MapScreen({ route }) {
         })();
     }, []);
 
+    // Load ratings from AsyncStorage when the component mounts
     useEffect(() => {
         const loadRatings = async () => {
             try {
@@ -125,6 +127,7 @@ function MapScreen({ route }) {
         loadRatings();
     }, []);
 
+    // Save ratings to AsyncStorage whenever the ratings state changes
     useEffect(() => {
         const saveRatings = async () => {
             try {
@@ -136,7 +139,7 @@ function MapScreen({ route }) {
 
         saveRatings();
     }, [ratings]);
-
+    // Animate to the selected marker's region when it changes
     useEffect(() => {
         if (selectedMarker && mapViewRef.current) {
             const { latitude, longitude } = selectedMarker;
@@ -148,6 +151,7 @@ function MapScreen({ route }) {
             }, 1000);
         }
     }, [selectedMarker]);
+    // Handle rating changes and update the state
 
     const handleFinishRating = (rating, name) => {
         setRatings(prevRatings => ({

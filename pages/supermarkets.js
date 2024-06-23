@@ -7,6 +7,7 @@ function Supermarkets({ route, navigation }) {
     const { data } = route.params;
     const [ratings, setRatings] = useState({});
 
+    // Load ratings from AsyncStorage when the component mounts
     useEffect(() => {
         const loadRatings = async () => {
             try {
@@ -22,6 +23,7 @@ function Supermarkets({ route, navigation }) {
         loadRatings();
     }, []);
 
+    // Save ratings to AsyncStorage whenever the ratings state changes
     useEffect(() => {
         const saveRatings = async () => {
             try {
@@ -34,6 +36,7 @@ function Supermarkets({ route, navigation }) {
         saveRatings();
     }, [ratings]);
 
+    // Handle rating changes and update the state
     const handleFinishRating = (rating, name) => {
         setRatings(prevRatings => ({
             ...prevRatings,

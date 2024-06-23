@@ -5,12 +5,14 @@ export const ThemeContext = React.createContext();
 export function ThemeProvider({ children }) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
+    // Function to toggle the theme and save the new state to AsyncStorage
     const toggleTheme = async () => {
         const newIsDarkMode = !isDarkMode;
         setIsDarkMode(newIsDarkMode);
         await AsyncStorage.setItem('isDarkMode', JSON.stringify(newIsDarkMode));
     };
 
+    // Load the theme state from AsyncStorage when the component mounts
     useEffect(() => {
         (async () => {
             const storedIsDarkMode = await AsyncStorage.getItem('isDarkMode');

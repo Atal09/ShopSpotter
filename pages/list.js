@@ -5,7 +5,7 @@ import { ThemeContext } from '../components/themecontext';
 function List({ navigation }) {
     const { isDarkMode } = useContext(ThemeContext);
     const [data, setData] = useState(null);
-
+//fetching data from the json file
     useEffect(() => {
         fetch('https://stud.hosted.hr.nl/1060857/programmeren%207/items.json')
             .then(response => response.json())

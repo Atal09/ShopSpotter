@@ -1,4 +1,3 @@
-// Settings.js
 import React, { useContext } from 'react';
 import { View, Switch, StyleSheet } from 'react-native';
 import { ThemeContext } from '../components/themecontext';
